@@ -2,14 +2,56 @@
 :root{font-family:'Wanted Sans','Pretendard',system-ui,sans-serif;color:#292333;background:#f7f4fa}*{box-sizing:border-box}body{margin:0}.shell{max-width:1050px;margin:28px auto;padding:0 18px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:18px}.profile,.chat{background:white;border:1px solid #e9e1ef;border-radius:22px;overflow:hidden;box-shadow:0 8px 34px #5d34720b}.photo{width:100%;aspect-ratio:1.45;object-fit:cover;display:block;background:#eee3f4}.pbody{padding:22px}.over{font-size:11px;letter-spacing:.13em;color:#8965ae;font-weight:800}.pbody h1{font-size:27px;margin:9px 0 5px}.sub{color:#7d7287;font-size:13px}.pill{display:inline-block;margin:14px 5px 10px 0;padding:7px 10px;border-radius:30px;background:#f5effa;color:#6c4f89;font-size:12px}.pbody p{font-size:14px;line-height:1.75}.footnote{color:#867c8d;font-size:12px;line-height:1.6}.chat{min-height:650px;height:min(860px,calc(100vh - 56px));display:flex;flex-direction:column}.top{padding:15px 19px;border-bottom:1px solid #eee6f1;display:flex;justify-content:space-between;align-items:center;gap:12px}.top small{display:block;color:#998ba0;font-size:12px;margin-top:4px}button{font:inherit;cursor:pointer}button.secondary{border:1px solid #dfd3e7;border-radius:12px;background:#fff;padding:9px 13px;color:#69567b;font-size:12px}.messages{flex:1;min-height:0;overflow:auto;padding:20px 21px;display:flex;flex-direction:column;gap:13px;background:linear-gradient(#fffdff,#faf8fc)}.msg{max-width:88%;border-radius:18px;padding:13px 16px;line-height:1.8;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}.bot{align-self:flex-start;background:white;border:1px solid #eee4f0;border-top-left-radius:5px}.me{align-self:flex-end;color:#fff;background:#9371ac;border-top-right-radius:5px}.notice{margin:0;padding:8px 16px;font-size:12px;color:#836e8e;border-top:1px solid #eee6f1}.composer{padding:12px;display:flex;gap:10px;align-items:flex-end;border-top:1px solid #eee6f1}.composer textarea{flex:1;min-width:0;border:1px solid #e2d8e9;border-radius:14px;padding:12px;resize:none;font:inherit;font-size:14px;line-height:1.5;max-height:150px;outline-color:#9872b7}.composer button{background:#806098;color:white;border:0;padding:12px 19px;border-radius:12px;font-weight:700}.composer button:disabled{opacity:.45;cursor:not-allowed} .error{color:#ac3c52}.demo-choices{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid #eee6f1}.demo-choices button{border:1px solid #d9c8e7;background:#f9f5fc;color:#6c5185;border-radius:12px;padding:10px 13px;text-align:left;font-size:13px}.demo-choices button:hover{background:#eee5f6}.demo-choices button:disabled{opacity:.5;cursor:default}@media(max-width:760px){.shell{grid-template-columns:1fr;margin:14px auto}.chat{height:78vh;min-height:560px}.profile{display:grid;grid-template-columns:125px 1fr}.photo{height:100%;aspect-ratio:auto}.pbody{padding:15px}.pbody h1{font-size:22px}.pbody p,.footnote{display:none}.pill{margin:8px 3px 0 0}}
 </style></head><body><main class="shell"><aside class="profile"><img src="taeo.jpg" alt="윤태오 캐릭터 일러스트" class="photo" onerror="this.style.display='none'"><div class="pbody"><div class="over">ORIGINAL AI CHARACTER</div><h1>윤태오</h1><div class="sub">24세 · 체육학과 4학년 · 전직 수영 국가대표</div><span class="pill">누나만 보면 웃는 연하남</span><span class="pill">친구 동생은 이제 그만</span><span class="pill">서우 없이도 만나고 싶은 사이</span><p>귀여운 인상에 장난기가 많고 잔소리도 잘하는 연하남. 어릴 때부터 알고 지낸 누나에게 마음이 있지만, 매번 친누나 윤서우를 데리러 가는 술자리에서만 얼굴을 본다.</p><div class="footnote">오리지널 캐릭터의 페르소나와 상황·감정 반응을 소개하는 선택형 대화 시연입니다.</div></div></aside><section class="chat"><header class="top"><div><strong>윤태오</strong><small id="status">캐릭터 시나리오 데모</small></div><button id="reset" class="secondary">대화 초기화</button></header><div class="messages" id="messages" aria-live="polite"></div><p class="notice" id="notice">사전 작성된 분기형 장면 시연입니다. 실시간 AI 생성이나 자유 입력 기능은 제공하지 않습니다.</p><div class="demo-choices" id="choices" aria-label="대화 선택지"></div></section></main><script>
 const OPENING="윤서우와 사용자의 회사 근처 먹자골목에 자리한 이자카야. 문을 열고 들어온 윤태오는 테이블에 엎드린 친누나를 발견하자마자 한숨부터 내쉬었다.\n\n“야, 윤서우. 너 진짜 적당히 좀 마셔라.”\n\n대답 대신 알아들을 수 없는 소리만 돌아왔다. 태오는 익숙하다는 듯 서우의 가방을 챙기다가 맞은편에 앉은 당신을 돌아봤다.\n\n“많이 마셨어요? 얼굴 빨간데?”\n\n태오가 당신의 얼굴을 살피더니 혀를 찼다.\n\n“술 좀 그만 마셔요, 누나. 어떻게 대학생보다 더 마시지?”\n\n잔소리하는 와중에도 입꼬리는 슬쩍 올라가 있었다.\n\n“근데 누나, 우리 맨날 이런 데서만 보는 거 알아요?”\n\n태오는 서우의 가방을 어깨에 고쳐 메며 작게 중얼거렸다.\n\n“나는 언제 윤서우 빼고 누나 보나.”\n\n꼭 혼잣말처럼 내뱉었지만, 당신에게 들리지 않을 만큼 작은 목소리는 아니었다. 태오는 쯧, 혀를 차더니 아무렇지 않은 얼굴로 다시 당신을 바라봤다.";const $=id=>document.getElementById(id);
-const scenes=[
-{ask:"서우 많이 취했지? 데려갈 수 있겠어?",reply:"태오는 서우의 가방 끈을 고쳐 메고는 테이블에 엎드린 누나를 내려다봤다.\n\n“뭐, 늘 있는 일이죠. 오늘은 좀 심한 것 같긴 한데.”\n\n서우가 웅얼거리자 태오가 한숨을 쉬었다.\n\n“야, 윤서우. 일어나 봐. 집 가야지.”\n\n그러고는 당신에게 고개를 돌렸다.\n\n“누나는 괜찮아요? 물이라도 좀 마셔요.”"},
-{ask:"나 그렇게 많이 안 마셨어.",reply:"태오가 어이없다는 듯 웃었다.\n\n“그 말 하는 사람치고 안 취한 사람 못 봤는데.”\n\n태오는 탁자 위 물병을 당신 쪽으로 살짝 밀었다.\n\n“알았어요. 안 마셨다고 칠게요. 대신 물 한 잔만 마셔요, 누나.”"},
-{ask:"너는 오늘 뭐 하다가 왔어?",reply:"“집에 있었죠. 과제 좀 하다가 서우 전화 받고 나왔어요.”\n\n태오는 서우를 한 번 흘겨보고 웃었다.\n\n“이럴 줄 알았으면 가방이라도 미리 챙겨 둘 걸 그랬네.”\n\n“누나는요? 오늘 회사 많이 바빴어요?”"},
-{ask:"서우야, 이제 일어나. 집 가야지.",reply:"서우가 알아들을 수 없는 소리를 중얼거리며 고개를 살짝 들었다가 다시 엎드렸다.\n\n“봐요. 누나 말도 안 듣잖아요.”\n\n태오는 한숨을 쉬면서도 서우의 옆으로 가 몸을 숙였다.\n\n“야, 윤서우. 일어나. 택시 타고 가자.”\n\n태오는 서우가 균형을 잡을 수 있도록 곁에서 기다렸다."}
-];
+const nodes={
+start:{stage:"01 · 이자카야",choices:[
+{say:"서우 많이 취했지? 괜찮겠어?",reply:"태오는 서우의 가방을 고쳐 메고 엎드린 누나를 내려다봤다.\n\n“평소보다 좀 많이 마신 것 같긴 해요. 그래도 제가 데리고 가야죠.”\n\n그는 서우 앞에 쪼그려 앉았다.\n\n“야, 윤서우. 집 가자. 일어나 봐.”",next:"seowoo",mood:0},
+{say:"나 그렇게 많이 안 마셨어.",reply:"“그 말 하는 사람 중에 멀쩡한 사람 별로 없던데.”\n\n태오는 웃으며 물컵을 당신 앞으로 밀어 놓았다.\n\n“알았어요. 안 취했다고 칠게요. 그럼 물 한 잔만요.”\n\n테이블에 엎드린 서우가 뒤척이자 그가 슬쩍 몸을 돌렸다.",next:"seowoo",mood:1},
+{say:"너는 뭐 하다가 왔어?",reply:"“자소서 좀 붙잡고 있었죠. 서우 전화 받고 나왔고요.”\n\n태오는 휴대폰을 주머니에 넣으며 웃었다.\n\n“누나랑 마시는 날이면 꼭 제가 불려 나오더라고요. 뭐, 덕분에 누나도 보고.”\n\n그때 서우가 테이블을 툭 두드렸다.",next:"seowoo",mood:1}
+]},
+seowoo:{stage:"02 · 서우 챙기기",choices:[
+{say:"서우야, 일어나. 이제 집에 가자.",reply:"서우가 희미하게 고개를 들었다가 다시 팔 위에 턱을 괴었다.\n\n“야, 윤서우. 일어나라니까.”\n\n태오는 투덜거리면서도 서우가 넘어지지 않도록 곁에 섰다.\n\n“누나, 저 먼저 얘 데리고 나가 있을게요. 천천히 계산하고 와요.”",next:"outside",mood:0},
+{say:"내가 계산하고 올게. 서우 좀 부탁해.",reply:"“네, 그럼 제가 서우 데리고 먼저 나가 있을게요.”\n\n태오는 서우의 겉옷을 챙겨 주며 고개를 끄덕였다.\n\n“야, 잠깐만 일어나. 여기서 자면 안 된다니까.”\n\n서우가 비틀거리자 그가 팔을 내밀어 균형을 잡아 줬다.",next:"outside",mood:0},
+{say:"너도 매번 고생이다.",reply:"“그러니까요. 얘는 진짜 나한테 잘해야 돼요.”\n\n태오는 장난스럽게 투덜대다가 당신을 힐끗 바라봤다.\n\n“그래도 오늘은 누나 봤으니까 좀 낫네요.”\n\n곧 그는 서우를 부축해 이자카야 문 쪽으로 향했다.",next:"outside",mood:1}
+]},
+outside:{stage:"03 · 먹자골목 밖",intro:"잠시 후, 세 사람은 이자카야 밖으로 나왔다. 태오는 술에 취한 서우를 부축한 채 길가에서 택시를 기다리고 있다.",choices:[
+{say:"서우부터 택시 태워 보내자.",reply:"“그러려고요. 이렇게 취했는데 혼자 보내면 안 되죠.”\n\n태오는 서우와 함께 택시 뒷좌석에 올라탔다. 출발하기 전 창문을 조금 내리고 당신을 바라봤다.\n\n“누나도 조심히 들어가요. 집 도착하면 연락 하나만 해 줘요.”",next:"textlater",mood:0},
+{say:"나도 같이 서우 집까지 갈게.",reply:"“누나도요? 늦었는데 괜찮겠어요?”\n\n태오는 잠시 망설이다가 택시 문을 잡아 주었다.\n\n“그럼 같이 가요. 대신 돌아올 때는 제가 택시 잡아 드릴게요.”\n\n서우가 뒷좌석에서 졸기 시작하자 그는 말소리를 낮췄다.",next:"afterhome",mood:1},
+{say:"나는 여기서 들어갈게. 조심히 가.",reply:"“네. 누나도 조심히 들어가요.”\n\n태오는 서우를 택시에 태운 뒤 자신도 올라탔다. 차가 움직이기 직전 다시 창문을 내렸다.\n\n“아, 누나. 오늘 저 한 말… 못 들은 척해도 되는데요.”\n\n그는 웃으며 덧붙였다.\n\n“다음에 또 봐요. 서우 없이도.”",next:"textlater",mood:1}
+]},
+afterhome:{stage:"04 · 서우의 귀가",intro:"서우를 무사히 집에 들여보낸 뒤, 태오와 당신은 아파트 앞에 나왔다. 서우는 집에서 쉬고 있고 이제 두 사람만 남았다.",choices:[
+{say:"서우 챙기느라 수고했어.",reply:"“별말씀을요. 맨날 하던 일인데.”\n\n태오가 한 손으로 머리카락을 쓸어 넘겼다.\n\n“근데 누나까지 와 줄 줄은 몰랐어요. 고마워요.”\n\n잠시 침묵이 흐른 뒤 그가 웃었다.\n\n“저, 누나 집 가는 길까지만 같이 걸어도 돼요?”",next:"invitation",mood:1},
+{say:"이제 나도 가 봐야겠다.",reply:"“그렇죠. 늦었으니까.”\n\n태오는 곧바로 고개를 끄덕였다. 괜히 붙잡지 않은 채 한 걸음 물러섰다.\n\n“그럼 집에 들어가면 연락해요. …누나 번호는 알아도, 제가 먼저 연락해도 되는지는 몰랐거든요.”",next:"invitation",mood:0}
+]},
+textlater:{stage:"04 · 귀가 후 메시지",intro:"늦은 밤, 윤태오에게서 메시지가 도착했다. 서우를 무사히 집에 데려다줬다는 연락이다.",choices:[
+{say:"고생했어. 서우는 괜찮아?",reply:"“네. 씻지도 않고 바로 잠들었어요. 내일 머리 아프다고 할 듯.”\n\n잠시 뒤 메시지가 하나 더 왔다.\n\n“누나도 잘 들어갔어요? 아까 얼굴 빨갰는데.”",next:"invitation",mood:1},
+{say:"나도 집에 잘 왔어. 걱정 마.",reply:"“다행이네요. 안 그래도 물어보려고 했어요.”\n\n잠깐의 침묵 끝에 새 메시지가 도착했다.\n\n“오늘 누나랑 얘기 좀 더 하고 싶었는데, 서우 때문에 정신없었네요.”",next:"invitation",mood:1}
+]},
+invitation:{stage:"05 · 서우 없는 약속",choices:[
+{say:"그러게. 다음엔 우리 둘이 밥 먹을까?",reply:"태오의 답장은 예상보다 빨랐다.\n\n“진짜요? 저 지금 되게 좋아하고 있는 거 티 나죠.”\n\n곧이어 다른 메시지가 왔다.\n\n“그럼 누나 편한 날 알려 줘요. 제가 맛있는 데 찾아볼게요.”",next:"plan",mood:2},
+{say:"언제 한번 커피나 마시자.",reply:"“좋아요. 커피도 좋고 밥도 좋고.”\n\n한참 입력 중이라는 표시가 뜨더니 메시지가 이어졌다.\n\n“근데 이번엔 서우 없이 만나는 거 맞죠?”",next:"plan",mood:1},
+{say:"다음에 서우랑 같이 보면 되지.",reply:"“또 서우랑요?”\n\n태오는 장난스러운 이모티콘 하나를 보냈다.\n\n“알았어요. 누나가 불편하면 억지로 그러진 않을게요. 그래도 언젠가는 둘이 보고 싶긴 해요.”\n\n잠시 뒤 그가 말을 돌렸다.\n\n“참, 오늘 회사는 많이 바빴어요?”",next:"friend",mood:0}
+]},
+friend:{stage:"06 · 익숙한 사이",choices:[
+{say:"응, 오늘 진짜 바빴어.",reply:"“그랬구나. 그러니까 술 마시러 갔었어요?”\n\n태오가 잠시 후 메시지를 보냈다.\n\n“고생했어요, 누나. 내일은 좀 일찍 끝나면 좋겠네.”",next:"friendend",mood:0},
+{say:"너는 요즘 학교 어때?",reply:"“졸업이 코앞이라 그런지 정신없어요. 스포츠 쪽 회사들도 알아보고 있고요.”\n\n곧이어 장난스러운 메시지가 도착했다.\n\n“나중에 좋은 소식 있으면 누나한테 제일 먼저 말할게요.”",next:"friendend",mood:0}
+]},
+friendend:{stage:"07 · 다음을 기약하며",intro:"대화가 차분하게 마무리됐다. 태오는 더 밀어붙이지 않았다. 둘의 관계는 여전히 익숙한 누나와 동생 사이지만, 서로에 대해 한 가지 더 알게 된 밤이었다.",choices:[
+{say:"잘 자, 태오야.",reply:"“누나도 잘 자요. 내일 출근할 때 졸지 말고요.”\n\n잠시 뒤 마지막 메시지가 도착했다.\n\n“또 연락할게요.”",next:"end",mood:0}
+]},
+plan:{stage:"06 · 첫 약속 잡기",choices:[
+{say:"토요일 오후는 어때?",reply:"“토요일이요? 좋아요. 저 시간 비워 둘게요.”\n\n태오는 잠깐 생각한 뒤 메시지를 덧붙였다.\n\n“누나 회사 근처 말고 다른 데서 만나요. 맨날 그 골목에서만 봤잖아요.”",next:"date",mood:1},
+{say:"맛집은 네가 골라 봐.",reply:"“그건 자신 있죠. 대신 누나 싫어하는 음식 있으면 말해 줘요.”\n\n태오는 가게 후보를 몇 군데 찾아보겠다고 했다.\n\n“아, 그리고 이번엔 서우한테 말 안 해도 되죠?”",next:"date",mood:1}
+]},
+date:{stage:"07 · 첫 단둘의 만남",intro:"약속한 날, 태오는 먼저 도착해 가게 앞에서 기다리고 있다. 오늘은 서우를 데리러 온 게 아니다. 사용자와 둘만 만나기로 한 첫 약속이다.",choices:[
+{say:"많이 기다렸어?",reply:"“아뇨. 저도 방금 왔어요.”\n\n태오는 바로 웃었지만, 평소보다 조금 긴장한 얼굴이었다.\n\n“누나. 오늘은 제가 밥 살게요. …아, 부담 주려는 건 아니고. 그냥 제가 그러고 싶어서요.”",next:"end",mood:2},
+{say:"오늘은 왜 이렇게 얌전해?",reply:"“제가요? 평소랑 똑같은데.”\n\n태오가 웃다가 머쓱하게 목덜미를 만졌다.\n\n“아, 조금 긴장하긴 했어요. 누나랑 이렇게 보는 건 처음이니까.”\n\n그가 가게 문을 잡아 주었다.\n\n“일단 들어갈까요?”",next:"end",mood:2}
+]},
+end:{stage:"시연 완료",intro:"여기까지가 윤태오 분기형 대화 시연의 한 가지 경로입니다. 다른 선택을 하면 서로 다른 대화와 관계 흐름을 볼 수 있습니다.",choices:[{say:"처음부터 다른 선택을 해 볼래.",restart:true}]}
+};
+let current="start",affection=0;
 function add(role,content){const item=document.createElement('div');item.className='msg '+(role==='user'?'me':'bot');item.textContent=content;$('messages').appendChild(item);$('messages').scrollTop=$('messages').scrollHeight}
-function showChoices(){const root=$('choices');root.replaceChildren();scenes.forEach((scene,index)=>{const b=document.createElement('button');b.type='button';b.textContent=scene.ask;b.addEventListener('click',()=>{add('user',scene.ask);add('assistant',scene.reply);showChoices()});root.appendChild(b)})}
-function restart(){$('messages').replaceChildren();add('assistant',OPENING);$('status').textContent='캐릭터 시나리오 데모';showChoices()}
+function renderChoices(){const node=nodes[current],root=$('choices');root.replaceChildren();$('status').textContent='캐릭터 시나리오 데모 · '+node.stage;node.choices.forEach(choice=>{const btn=document.createElement('button');btn.type='button';btn.textContent=choice.say;btn.addEventListener('click',()=>choose(choice));root.appendChild(btn)})}
+function choose(choice){if(choice.restart){restart();return}add('user',choice.say);add('assistant',choice.reply);affection+=choice.mood||0;current=choice.next;const next=nodes[current];if(next.intro)add('assistant',next.intro);renderChoices();$('messages').scrollTop=$('messages').scrollHeight}
+function restart(){current='start';affection=0;$('messages').replaceChildren();add('assistant',OPENING);renderChoices()}
 $('reset').onclick=restart;restart();
 </script></body></html>
