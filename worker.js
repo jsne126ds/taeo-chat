@@ -83,7 +83,9 @@ export default {
        messages.some(m=>!m||!['user','assistant'].includes(m.role)||typeof m.content!=='string'||
        m.content.length<1||m.content.length>1500)||messages.at(-1).role!=='user')
        return json({error:'Invalid messages'},400,cors);
-    // Initial assistant scene is already summarized in persona; Gemini history starts with user's message.\n    const conversation=messages[0]?.role==='assistant'?messages.slice(1):messages;\n    const contents=conversation.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
+    // Initial assistant scene is already summarized in persona; Gemini history starts with user's message.
+    const conversation=messages[0]?.role==='assistant'?messages.slice(1):messages;
+    const contents=conversation.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
     const model=env.GEMINI_MODEL||'gemini-2.5-flash';
     if(!/^gemini-[\w.-]+$/.test(model))return json({error:'Invalid model configuration'},500,cors);
     try{
@@ -93,7 +95,12 @@ export default {
           generationConfig:{temperature:0.85,maxOutputTokens:850}})
       });
       if(!upstream.ok){
-        const errBody=await upstream.json().catch(()=>({}));\n        console.error('Gemini API error',JSON.stringify({status:upstream.status,model,details:String(errBody?.error?.message||'').slice(0,300)}));\n        if(upstream.status===429)return json({error:'Gemini 요청 한도에 도달했어요. 잠시 뒤 다시 시도해 주세요.'},429,cors);\n        if(upstream.status===400)return json({error:'Gemini 요청 형식 오류(400). Cloudflare Worker Logs에서 상세 사유를 확인해 주세요.'},502,cors);\n        if(upstream.status===404)return json({error:'Gemini 모델을 찾을 수 없습니다(404). GEMINI_MODEL 값을 확인해 주세요.'},502,cors);\n        if(upstream.status===401||upstream.status===403)return json({error:'Gemini API 인증 또는 접근 권한 오류('+upstream.status+').'},502,cors);
+        const errBody=await upstream.json().catch(()=>({}));
+        console.error('Gemini API error',JSON.stringify({status:upstream.status,model,details:String(errBody?.error?.message||'').slice(0,300)}));
+        if(upstream.status===429)return json({error:'Gemini 요청 한도에 도달했어요. 잠시 뒤 다시 시도해 주세요.'},429,cors);
+        if(upstream.status===400)return json({error:'Gemini 요청 형식 오류(400). Cloudflare Worker Logs에서 상세 사유를 확인해 주세요.'},502,cors);
+        if(upstream.status===404)return json({error:'Gemini 모델을 찾을 수 없습니다(404). GEMINI_MODEL 값을 확인해 주세요.'},502,cors);
+        if(upstream.status===401||upstream.status===403)return json({error:'Gemini API 인증 또는 접근 권한 오류('+upstream.status+').'},502,cors);
         return json({error:'Gemini API 오류 ('+upstream.status+'). API 키와 모델 사용 권한을 확인해 주세요.'},502,cors);
       }
       const result=await upstream.json();
